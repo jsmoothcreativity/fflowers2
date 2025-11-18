@@ -2016,3 +2016,30 @@ body {
     transform: scale(1.8) !important;
   }
 }
+
+#egg-finale {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.egg-finale-card {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 15px;
+  max-width: 320px;
+  text-align: center;
+  color: #C21E56;
+  font-family: sans-serif;
+  animation: popIn 0.35s ease;
+}
+
+@keyframes popIn {
+  from { transform: scale(0.6); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
