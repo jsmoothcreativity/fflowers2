@@ -2008,3 +2008,11 @@ body {
   width: calc(100% - 40px);
   max-width: 600px;
 }
+
+
+/* Make the flower bigger on small screens */
+@media (max-width: 600px) {
+  .flowers {
+    transform: scale(1.4) !important;
+  }
+}
