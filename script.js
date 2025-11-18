@@ -40,53 +40,9 @@ function initEasterEggHunt() {
 
   const eggs = selectedEggs;
   if (!eggs.length) return;
-
-  let found = 0;
-
-  // HUD at the top
-  const hud = document.createElement("div");
-  hud.id = "egg-hud";
-  hud.innerHTML = `
-    <strong>Hidden hearts:</strong>
-    <span id="egg-count">0</span> / ${eggs.length}
-  `;
-  document.body.appendChild(hud);
-
-  // Toast for feedback
-  const toast = document.createElement("div");
-  toast.id = "egg-toast";
-  document.body.appendChild(toast);
-
-  const countSpan = hud.querySelector("#egg-count");
-
-  function showToast(text) {
-    toast.textContent = text;
-    toast.classList.add("visible");
-    setTimeout(() => {
-      toast.classList.remove("visible");
-    }, 1500);
-  }
-
-  // Mark chosen bubbles as eggs
-  eggs.forEach((egg, index) => {
-    egg.classList.add("egg");
-    egg.setAttribute("aria-label", "Hidden heart");
-
-    egg.addEventListener("click", () => {
-      if (egg.classList.contains("egg--found")) return;
-
-      egg.classList.add("egg--found");
-      found++;
-      countSpan.textContent = found;
-      showToast(`You found heart #${index + 1}!`);
-
-      if (found === eggs.length) {
-        showToast("You found them all! 💐");
-        setTimeout(showFinalMessage, 800);
-      }
-    });
-  });
+  // ...
 }
+
 
 function showFinalMessage() {
   const message = document.createElement("div");
