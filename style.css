@@ -2177,3 +2177,8 @@ body {
   padding: 10px 0;
   z-index: 9999;
 }
+
+body {
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+}
