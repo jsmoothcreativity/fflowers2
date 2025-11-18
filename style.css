@@ -2043,3 +2043,47 @@ body {
   from { transform: scale(0.6); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+/* Make the secret heart fully interactive (overrides pointer-events: none on .bubbles) */
+.bubbles .secret-heart,
+.bubbles .secret-heart *,
+.bubbles .secret-heart svg {
+  pointer-events: auto !important;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+/* Remove the default solid green circle / glow from this one */
+.bubbles .secret-heart {
+  position: relative;
+  box-shadow: none !important;          /* kills the solid green ring */
+}
+
+/* Dashed circle visual around the secret heart */
+.bubbles .secret-heart::after {
+  content: "";
+  position: absolute;
+  inset: -8px;                          /* size around the heart */
+  border: 3px dashed rgb(18, 226, 129); /* same green, but dashed */
+  border-radius: 50%;
+  animation: rotate-dash 6s linear infinite;
+  z-index: -1;                          /* behind the heart */
+}
+
+/* Optional: softer fill for the hidden heart itself */
+.bubbles .secret-heart .heart {
+  fill: rgba(255, 182, 193, 0.85);
+}
+
+/* Button press feeling on tap/click */
+.bubbles .secret-heart:active {
+  transform: translate(0, 0.05em) scale(0.9);
+  transition: transform 0.1s ease-out;
+}
+
+/* Rotation animation for the dashed ring */
+@keyframes rotate-dash {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
