@@ -16,11 +16,11 @@ body {
   justify-content: center;
   min-height: 100vh;
   background-color: var(--dark-color);
-  /* allow scrolling but keep layout */
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: auto; /* allow vertical scroll */
   perspective: 1000px;
 }
+
 .night {
   position: fixed;
   left: 50%;
@@ -2163,23 +2163,9 @@ body {
   z-index: 9999;
 }
 
+/* === Mobile-friendly tweaks === */
 @media (max-width: 768px) {
-  .flowers {
-    /* make the flower a bit BIGGER on mobile */
-    transform: scale(1.1);
-    margin-top: 0.5rem;
-    transform-origin: bottom center;
-  }
-
-  .bubbles {
-    /* keep hearts full size so they match the flower */
-    transform: scale(1);
-    transform-origin: bottom center;
-  }
-
-  .bubble {
-    margin: 0;
-  }
+  /* DO NOT change body layout or flower scale here */
 
   /* HUD at the top */
   #egg-hud {
@@ -2205,11 +2191,13 @@ body {
     z-index: 999;
   }
 
+  /* Finale card */
   #egg-finale .egg-finale-card {
     max-width: 320px;
     width: 90%;
   }
 
+  /* Bottom flirty message */
   #bottom-message {
     margin-top: 1.5rem;
     padding: 1rem;
