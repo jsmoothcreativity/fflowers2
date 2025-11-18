@@ -1572,6 +1572,23 @@ body {
   z-index: 200;
   border-radius: 50%;
 }
+
+/* Highlight the 5 hidden hearts */
+.bubble.egg {
+  position: relative;
+  cursor: pointer;
+}
+
+/* subtle ring so you can SEE which ones are the eggs */
+.bubble.egg::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
 .bubble:nth-child(1) {
   top: 8%;
   left: 60%;
