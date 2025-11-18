@@ -1,29 +1,27 @@
+// Run the Easter egg hunt when the page loads
 window.addEventListener("load", () => {
-  // original behavior
-  document.body.classList.remove("container");
-
-  // start the heart hunt
   initEasterEggHunt();
 });
 
-function initEasterEggHunt() {function initEasterEggHunt() {
+function initEasterEggHunt() {
+  // Get all the floating heart bubbles
   const bubbles = Array.from(document.querySelectorAll(".bubble"));
   if (!bubbles.length) return;
 
-  // Pick specific bubbles that you know are in different spots
-  // These numbers are ZERO-BASED indexes in the bubbles NodeList
-  // (so 2 = 3rd .bubble in the HTML, 5 = 6th, etc.)
-  const eggIndices = [2, 5, 8, 12, 16];
+  // Pick specific bubbles so they are spaced out and not overlapping
+  // These numbers are ZERO-BASED indexes in the NodeList of .bubble elements.
+  // You can change them if you want different hearts.
+  const eggIndices = [1, 4, 7, 10, 14];
 
   const eggs = eggIndices
     .map((i) => bubbles[i])
-    .filter(Boolean); // ignore any that don't exist
+    .filter(Boolean); // keep only ones that exist
 
   if (!eggs.length) return;
 
   let found = 0;
 
-  // HUD at the top
+  // === HUD at the top (shows "Hidden hearts: X / 5") ===
   const hud = document.createElement("div");
   hud.id = "egg-hud";
   hud.innerHTML = `
@@ -32,12 +30,12 @@ function initEasterEggHunt() {function initEasterEggHunt() {
   `;
   document.body.appendChild(hud);
 
-  // Toast for feedback
+  const countSpan = hud.querySelector("#egg-count");
+
+  // === Toast at the bottom for feedback ===
   const toast = document.createElement("div");
   toast.id = "egg-toast";
   document.body.appendChild(toast);
-
-  const countSpan = hud.querySelector("#egg-count");
 
   function showToast(text) {
     toast.textContent = text;
@@ -47,12 +45,13 @@ function initEasterEggHunt() {function initEasterEggHunt() {
     }, 1500);
   }
 
-  // Mark chosen bubbles as eggs
+  // === Mark chosen hearts as "eggs" and attach click handler ===
   eggs.forEach((egg, index) => {
     egg.classList.add("egg");
     egg.setAttribute("aria-label", "Hidden heart");
 
     egg.addEventListener("click", () => {
+      // If this one was already found, ignore
       if (egg.classList.contains("egg--found")) return;
 
       egg.classList.add("egg--found");
@@ -68,8 +67,7 @@ function initEasterEggHunt() {function initEasterEggHunt() {
   });
 }
 
-
-
+// === Final overlay message when all hearts are found ===
 function showFinalMessage() {
   const message = document.createElement("div");
   message.id = "egg-finale";
@@ -80,6 +78,7 @@ function showFinalMessage() {
       <p>That’s how carefully I want to look after your heart too.</p>
     </div>
   `;
+  // Tap/click anywhere to close
   message.addEventListener("click", () => message.remove());
   document.body.appendChild(message);
 }
