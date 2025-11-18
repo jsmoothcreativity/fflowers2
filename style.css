@@ -16,7 +16,9 @@ body {
   justify-content: center;
   min-height: 100vh;
   background-color: var(--dark-color);
-  overflow: hidden;
+  /* allow scrolling but keep layout */
+  overflow-x: hidden;
+  overflow-y: auto;
   perspective: 1000px;
 }
 .night {
@@ -2178,24 +2180,9 @@ body {
   z-index: 9999;
 }
 
-body {
-  overflow-y: auto !important;
-  overscroll-behavior: contain;
-}
 
 /* === Mobile-friendly tweaks === */
 @media (max-width: 768px) {
-  body {
-    /* allow scroll on phones */
-    overflow-y: auto !important;
-    height: auto;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
-    -webkit-overflow-scrolling: touch;
-  }
 
   .flowers {
     /* shrink the flower scene a bit */
@@ -2251,4 +2238,8 @@ body {
     text-align: center;
     line-height: 1.4;
   }
+}
+
+html, body {
+  -webkit-overflow-scrolling: touch;
 }
