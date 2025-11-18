@@ -2182,3 +2182,73 @@ body {
   overflow-y: auto !important;
   overscroll-behavior: contain;
 }
+
+/* === Mobile-friendly tweaks === */
+@media (max-width: 768px) {
+  body {
+    /* allow scroll on phones */
+    overflow-y: auto !important;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .flowers {
+    /* shrink the flower scene a bit */
+    transform: scale(0.7);
+    margin-top: 1rem;
+  }
+
+  .bubbles {
+    /* make hearts a bit smaller on mobile */
+    transform: scale(0.8);
+  }
+
+  .bubble {
+    /* extra tap-friendly spacing if needed */
+    margin: 0.5rem;
+  }
+
+  /* HUD at the top */
+  #egg-hud {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    z-index: 999;
+  }
+
+  /* Little toast message */
+  #egg-toast {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    max-width: 90%;
+    text-align: center;
+    z-index: 999;
+  }
+
+  /* Finale card */
+  #egg-finale .egg-finale-card {
+    max-width: 320px;
+    width: 90%;
+  }
+
+  /* Bottom flirty message */
+  #bottom-message {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    line-height: 1.4;
+  }
+}
