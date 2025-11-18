@@ -1,44 +1,15 @@
-window.addEventListener("load", () => {
-  // original behavior
-  document.body.classList.remove("container");
-
-  // start the heart hunt
-  initEasterEggHunt();
-});
-
 function initEasterEggHunt() {
   const bubbles = Array.from(document.querySelectorAll(".bubble"));
-  if (!bubbles.length) return;
+  if (bubbles.length === 0) return;
 
-  const totalEggs = Math.min(4, bubbles.length);
+  // Pick 4 bubbles that are nicely spaced out (no overlaps)
+  // These are nth-child(2), (8), (13), (19) in your CSS positions.
+  const eggs = [];
+  if (bubbles[1]) eggs.push(bubbles[1]);   // bubble 2
+  if (bubbles[7]) eggs.push(bubbles[7]);   // bubble 8
+  if (bubbles[12]) eggs.push(bubbles[12]); // bubble 13
+  if (bubbles[18]) eggs.push(bubbles[18]); // bubble 19
 
-  // --- pick eggs that are not overlapping/too close ---
-  const selectedEggs = [];
-  const minDistance = 15; // "distance" in percent units
-
-  bubbles.forEach((bubble) => {
-    if (selectedEggs.length >= totalEggs) return;
-
-    const style = window.getComputedStyle(bubble);
-    const top = parseFloat(style.top) || 0;
-    const left = parseFloat(style.left) || 0;
-
-    const tooClose = selectedEggs.some((b) => {
-      const s = window.getComputedStyle(b);
-      const t2 = parseFloat(s.top) || 0;
-      const l2 = parseFloat(s.left) || 0;
-      const dx = left - l2;
-      const dy = top - t2;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      return dist < minDistance;
-    });
-
-    if (!tooClose) {
-      selectedEggs.push(bubble);
-    }
-  });
-
-  const eggs = selectedEggs;
   if (!eggs.length) return;
 
   let found = 0;
@@ -86,18 +57,4 @@ function initEasterEggHunt() {
       }
     });
   });
-}
-
-function showFinalMessage() {
-  const message = document.createElement("div");
-  message.id = "egg-finale";
-  message.innerHTML = `
-    <div class="egg-finale-card">
-      <h2>All hearts found 💖</h2>
-      <p>You didn’t miss a single one.</p>
-      <p>That’s how carefully I want to look after your heart too.</p>
-    </div>
-  `;
-  message.addEventListener("click", () => message.remove());
-  document.body.appendChild(message);
 }
