@@ -16,8 +16,8 @@ body {
   justify-content: center;
   min-height: 100vh;
   background-color: var(--dark-color);
-  overflow-x: hidden;
-  overflow-y: auto; /* allow vertical scroll */
+  overflow-x: hidden;   /* no sideways scroll */
+  overflow-y: auto;     /* allow vertical scroll */
   perspective: 1000px;
 }
 
@@ -2162,10 +2162,25 @@ body {
   padding: 10px 0;
   z-index: 9999;
 }
-
 /* === Mobile-friendly tweaks === */
 @media (max-width: 768px) {
-  /* DO NOT change body layout or flower scale here */
+
+  /* Make the flower basically fill the screen on mobile */
+  .flowers {
+    transform: scale(2.4);
+    transform-origin: bottom center;
+  }
+
+  /* Hearts bigger too */
+  .bubbles {
+    transform: scale(2);
+    transform-origin: bottom center;
+  }
+
+  /* Drop the flower closer to the bottom so it uses more height */
+  .flower {
+    bottom: 0;
+  }
 
   /* HUD at the top */
   #egg-hud {
@@ -2179,7 +2194,7 @@ body {
     z-index: 999;
   }
 
-  /* Little toast message */
+  /* Toast at the bottom */
   #egg-toast {
     position: fixed;
     bottom: 12px;
