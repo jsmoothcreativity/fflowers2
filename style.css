@@ -2013,6 +2013,6 @@ body {
 /* Make the flower bigger on small screens */
 @media (max-width: 600px) {
   .flowers {
-    transform: scale(1.4) !important;
+    transform: scale(2.4) !important;
   }
 }
